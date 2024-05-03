@@ -80,15 +80,17 @@ public class Jlogin extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				Criptografia criptografia = new Criptografia("123456", Criptografia.MD5);
+				Criptografia criptografia = new Criptografia(passwordField.getText(), Criptografia.MD5);
 				System.out.println(criptografia.criptografar());
 				if (textFieldUsuario.getText() != null && !textFieldUsuario.getText().isEmpty()
 						&& passwordField.getText() != null && !passwordField.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(btnNewButton, "Informações validas");
-					dispose();
-					Jprincipal Jprincipal = new Jprincipal();
-					Jprincipal.setVisible(true);
-					
+					if (criptografia.criptografar().equals("E10ADC3949BA59ABBE56E057F20F883E")) {
+						JOptionPane.showMessageDialog(btnNewButton, "Informações validas");
+						dispose();
+						Jprincipal Jprincipal = new Jprincipal();
+						Jprincipal.setVisible(true);
+					}
+
 				} else {
 					JOptionPane.showMessageDialog(btnNewButton, "Verifique as informações", "Aviso",
 							JOptionPane.WARNING_MESSAGE);
